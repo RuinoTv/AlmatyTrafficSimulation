@@ -1,0 +1,19 @@
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+
+# IDE
+.idea/
+
+# Test and coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS files
+Thumbs.db
+Desktop.ini
