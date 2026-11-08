@@ -10,13 +10,13 @@ sys.path.insert(0, str(SRC_PATH))
 import pygame
 
 from traffic_sim.map import Intersection
-from traffic_sim.map.config import WINDOW_SIZE, WINDOW_TITLE
+from traffic_sim.map.config import FPS, WINDOW_SIZE, WINDOW_TITLE
 
 
 def main() -> None:
     """Қиылыстың статикалық көрінісін көрсетіп, оқиғалар циклін іске қосады."""
     pygame.init()
-    screen = pygame.display.set_mode(WINDOW_SIZE)
+    screen = pygame.display.set_mode(WINDOW_SIZE, pygame.RESIZABLE)
     pygame.display.set_caption(WINDOW_TITLE)
     clock = pygame.time.Clock()
     intersection = Intersection()
@@ -26,12 +26,14 @@ def main() -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.VIDEORESIZE:
+                screen = pygame.display.set_mode(event.size, pygame.RESIZABLE)
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
                 running = False
 
         intersection.draw(screen)
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(FPS)
 
     pygame.quit()
 
